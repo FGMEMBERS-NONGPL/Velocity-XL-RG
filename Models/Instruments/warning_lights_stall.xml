@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<path>warning_lights_stall.ac</path>
+
+<animation>
+  <type>select</type>
+  <object-name>LampStallOn</object-name>
+  <condition>
+    <and>
+      <property>/systems/electrical/outputs/bus-dc</property>
+      <property>/sim/alarms/stall-warning</property>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>LampStall</object-name>
+  <condition>
+    <or>
+      <not><property>/systems/electrical/outputs/bus-dc</property></not>
+      <not><property>/sim/alarms/stall-warning</property></not>
+    </or>
+  </condition>
+</animation>
+
+</PropertyList>
+

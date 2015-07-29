@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+  <model>
+    <livery>
+      <name type="string">Blue and Gold</name>
+      <texture>txt_paint.rgb</texture>
+    </livery>
+    <cabin>
+      <texture>txt_cabin.rgb</texture>
+    </cabin>
+    <seats>
+      <texture>txt_cockpit_seats.rgb</texture>
+    </seats>
+    <propellers>
+      <texture>txt_propblade.rgb</texture>
+    </propellers>
+    <propellerdisks>
+      <texture>txt_prop.rgb</texture>
+    </propellerdisks>
+  </model>
+</sim>
+</PropertyList>

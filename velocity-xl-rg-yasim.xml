@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+
+<!--
+
+YASim Aerodynamic Model for the Velocity XL RG
+Gary Neely aka 'Buckaroo'
+FDM version 1
+
+
+V speeds:
+
+Vr	75
+Vs	65
+Vno	140
+Vne	200 kias
+Vle	110
+Vlo	120
+
+From POH:
+
+Vs	60 kts (bottom end, depends on load)
+Vlo	120 kts (max gear operating)
+Vmo	140 kts
+Vno	170 kts (max structural cruise)
+Vne	200 kts
+
+Ceiling	20,000'; realistically 12,500' w/o oxygen systems
+
+Typical cruise number samples:
+9750	158 kias, 2480 RPM, 20.8 MAP
+9500'	200 ktas, 170 kias, probably near max power settings
+8000'	170 ktas, 147 kias @ 50-55%, 10 gph
+
+
+Engine (from type cert sheet):
+Lycoming IO-540-K
+max power	2700 RPM, 260 C (500 F) CHT, 300 HP
+man press	14.5-29?
+max continuous	2700 RPM, 260 C CHT
+max oil press	95 psi
+		115 psi (starting, warm-up)
+min oil press	55 psi (normal), 25 psi (idling)
+fuel press	(at engine pump inlet) (-2)-40 psi
+		(at injector inlet) 18-40 psi, 12 min idle
+max EGT		850 C (min at idle, full rich 725 C?); this can't be right, F maybe?
+                peak EGTs of 1450-1550F may be reasonable depending on conditions
+                1000F may be reasonable at SL idle
+max CHT		cert says 500F
+		475 F (435 F continuous) (source?), even these numbers should be considered high
+		380 continuous is more reasonable for good engine life, 350 better, stay under 420
+max oil temp	118 C
+min oil temp	60 C (continuous)
+bore 		5.125
+stroke		4.375
+disp		541.5
+comp		8.7:1
+weight		438 (199) (dry), (note: one source lists weight at 466 lbs)
+oil max		12 gallons
+oil norm	9.25 gallons (64.75 lbs at 7 lb/gal)
+
+Prop:
+MTV-9-B/LD178-102
+3 blades, constant-speed
+diameter	70" (1.778m/889r)
+max RPM		3100
+rotation	CCW from rear
+weight		58 lbs (26.3kg)
+moment		15.589, calculated using mean of rod and disk methods:
+		rod (mR^2)/3 * blades = 26.3 * 0.889^2 = 20.785
+		disk (mR^2)/2 = 26.3 * 0.889^2/2 = 10.393
+
+
+Weight and balance values based on real Velocity XL aids:
+All measurements from datum (nose of aircraft), subtract from 3 to get FDM values.
+
+					alternate	using
+min CG				3.226	3.226		3.399
+max CG				3.404	3.404
+
+nose gear			0.813	0.791		0.796
+main gear			3.693	3.639		3.681
+
+front seats moment arm		1.974	1.909-2.108	2.000
+rear seats moment arm		3.150	2.799-2.952	2.900
+baggage moment arm (strakes)		2.921		not used
+baggage (rear)				3.454		not used
+average fuel moment arm		3.438	3.337		3.438
+fuel sump				3.912		3.912
+ballast	(typical)		0.762	0.200		0.500
+
+Known problems:
+
+Ground interactions are jittery at higher friction values, probably in part because the CG is relatively close to the main gear, which YASim doesn't like. For this reason, gear friction values are a bit lower than I'd like. Other solutions are welcome.
+
+-->
+
+
+<!--
+Weight empty: 1800-1950 is realistic for an XL with retracts, so lets go with the light end of
+that range. Max load is 1100 lbs, giving a max weight of 2900 lbs.
+-->
+
+<airplane mass="1800" >
+
+
+<!--
+Approach and cruise settings assigned to generate book-value TAS for engine. Tweaked approach AoA comes in at just under half stall, which may be about right since wing stall AoA is affected by sweep and dihedral.
+Minimum speed is 65 kts, but Vs0 is somewhere below that depending on load, how well the plane was built, and other factors. The POH talks about the aircraft being docile and controllable at 60-70 kts.
+Cruise ~185 at 75% throttle. Land ~75, 85 if heavily loaded.
+Note that 75% power is max cruise, but the POH recommends 60% for best fuel and noise results.
+Cruise mixture is a guess but based on some experimentation and based on best power. This will need to
+be revised when CHT's are properly simulated. Leave pitch settings at full-fine for the solver.
+Numbers calculated using a reasonable 4-person load; 2 adults up front, 2 kids in back + baggage. The default run-time load is lighter.
+-->
+
+<approach speed="80" aoa="6.5" fuel="0.2" >
+  <control-setting axis="/controls/engines/engine[0]/throttle" value="0.3"/>
+  <control-setting axis="/controls/engines/engine[0]/mixture" value="1.0"/>
+  <control-setting axis="/controls/engines/engine[0]/propeller-pitch" value="1.0"/>
+  <control-setting axis="/controls/gear/gear-down" value="1"/>
+  <solve-weight idx="0" weight="0"/>
+  <solve-weight idx="1" weight="350"/>
+  <solve-weight idx="2" weight="350"/>
+</approach>
+
+<cruise speed="205" alt="8000" fuel="0.7" >
+  <control-setting axis="/controls/engines/engine[0]/throttle" value="1"/>
+  <control-setting axis="/controls/engines/engine[0]/mixture" value="0.65"/>
+  <control-setting axis="/controls/engines/engine[0]/propeller-pitch" value="1.0"/>
+  <control-setting axis="/controls/flight/elevator-trim" value="0.15"/>
+  <control-setting axis="/controls/gear/gear-down" value="0"/>
+  <solve-weight idx="0" weight="0"/>
+  <solve-weight idx="1" weight="350"/>
+  <solve-weight idx="2" weight="350"/>
+</cruise>
+
+
+<cockpit x="-2.270" y="0.280" z="0.574" />
+
+
+<fuselage ax="0" ay="0" az="0" bx="-5.569" by="0" bz="0.255" width="1.200" taper="0.3" midpoint="0.5" cy="0.833" cx="0.833"/>
+
+
+<!--
+Aileron trailing edges are up to 1/4" below wing trailing edge at neutral.
+Travel is 2.5" at inboard trailing edge.
+Drawings and photos indicate a dihedral of about 1 degree, but increasing it slightly yields improved
+rudder-only turns, which pilots say the Velocity does well.
+Wing incidence should be near 0. I nudged it up a bit to help ground departure and approaches, but this may be inappropriate as flying accounts indicate a fair amount of back-stick to raise the nose to where the wing generates lift, due to the 3 degree greater incidence of the canard. My fudge probably isn't that significant and the plane still requires a fair amount of back-stick to get the nose off.
+Twist is unknown due to lack of complete airfoil data. Using generic -3 for outboard span.
+Induced drag characteristics for this form are good.
+Camber and stall data are guesses. The wing is strongly semi-symmetrical, suggesting a low camber.
+Critical AoA is a guess, but a YASim stall aoa of 15 puts stall about right. Width is set fairly generously and peak left at recommended value.
+Based on Andy's remarks, YASim calculates center of lift at about 33% MAC. That's too far back and makes for a nose-heavy flight. I've calculated a MAC position to be approximately x=4.288, placing 33% at 4.005. 25% is probably more reasonable, which would be 3.863. To adjust for this, I've shifted the FDM position of the wing 0.142 meters forward of the geometric wing position: -3.430 -> -3.288 (wing), -4.350 -> -4.208 (mstab)
+-->
+
+<!--
+Inboard wing, including strakes and sections aft of the main spar.
+-->
+<wing x="-3.288" y="0.591" z="0.152" taper="0.555" length="1.583" chord="2.688" sweep="35.5" dihedral="1.5" incidence="0.5" idrag="1.15" camber="0.08" twist="0">
+  <stall aoa="15" width="8" peak="1.5"/>
+</wing>
+
+<!--
+Outboard wing, including ailerons.
+-->
+<mstab x="-4.208" y="1.879" z="0.179" taper="0.4763" length="3.000" chord="1.491" sweep="21.0" dihedral="2" incidence="0.5" idrag="1.15" camber="0.08" twist="-3">
+  <stall aoa="15" width="8" peak="1.5"/>
+  <flap0 start="0.103" end="0.736" lift="1.15" drag="1.18"/>
+  <control-input control="FLAP0" split="true" axis="/controls/flight/aileron"/>
+  <control-input control="FLAP0" split="true" axis="/controls/flight/aileron-trim"/>     
+  <control-output control="FLAP0" prop="/surface-positions/left-aileron-pos-norm" side="left"/>
+  <control-output control="FLAP0" prop="/surface-positions/right-aileron-pos-norm" side="right"/> 
+</mstab>
+
+
+<!--
+Canard travel is 26 deg down, 23 deg up.
+Airfoil resembles a GA(W)-1; I'm using similar stall characteristics but a more symmetrical camber
+value which gives better cruise tail incidence solutions.
+Canard incidence is about 3 degrees more than the wing; the canard must stall before the wing for a stable
+configuration. Note that the solver sets the hstab incidence, so I'm cheating by reducing the canard stall AoA
+below what it likely would be. 2 degrees and a more narrow width gives reasonable results.
+Elevator lift is set to give an acceptable approach elevator value for the worst-case load configuration,
+360 lbs for two pilots up front, full fuel, and a hundred pounds of baggage, allowing a landing at 85 or so
+with a load of 1100 lbs. This gives a lot of elevator authority for the default single-pilot light-load case.
+-->
+
+<hstab x="-1.094" y="0.450" z="0.136" taper="1" length="1.959" chord="0.470" sweep="0" dihedral="0" camber="0.12">
+  <stall aoa="13" width="8" peak="1.5" />
+  <flap0 start="0" end="1" lift="1.38" drag="1.35"/>       
+  <control-input control="FLAP0" axis="/controls/flight/elevator" invert="true"/>
+  <control-input control="FLAP0" axis="/controls/flight/elevator-trim" invert="true"/>      
+  <control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+</hstab>
+
+
+<!--
+Twin vertical stabs have one-way rudders; travel is outboard up to 1.75" at the trailing edge of the top of
+the rudder according to the flight manual. This yields about 22.5 degrees travel. In the controls
+installation section of the build manual, rudder travel is listed as 4" measured at wing trailing edge,
+yielding about 25 degrees of travel. For animations, I use the mean of 23.75 degrees.
+Both rudders can be employed to make a weak speedbrake. See rudders.nas for how this is
+implemented. An optional bellyflap is used on some builds for a more effective speedbrake.
+-->
+
+<vstab x="-5.395" y="4.675" z="0.148" taper="0.410" length="1.511" chord="0.742" sweep="22.5">
+  <stall aoa="15" width="4" peak="1.5" />
+  <flap0 start="0" end="1"  lift="1.25" drag="1.35"/>
+  <control-input  control="FLAP0" axis="/controls/flight/rudder-left" invert="true"/>
+  <control-input  control="FLAP0" axis="/controls/flight/rudder-trim" invert="true"/>
+  <control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm-left" min="1" max="-1"/>
+</vstab>
+
+<vstab x="-5.395" y="-4.675" z="0.148" taper="0.510" length="1.511" chord="0.742" sweep="22.5">
+  <stall aoa="15" width="4" peak="1.5" />
+  <flap0 start="0" end="1"  lift="1.25" drag="1.35"/>
+  <control-input  control="FLAP0" axis="/controls/flight/rudder-right" invert="true"/>
+  <control-input  control="FLAP0" axis="/controls/flight/rudder-trim" invert="true"/>
+  <control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm-right" min="1" max="-1"/>
+</vstab>
+
+
+<!--
+Mass assuming engine dry weight + prop weight + 64.75 lbs of oil (9.25 gals at 7 lbs).
+Using cruise-rpm to fine-tune top-end cruise speed.
+Calculated moment is 15.589, but I reduce this to 10 as the moment effects seem to exceed reported effects.
+Moment is negative for a counter-rotating pusher configuration.
+Idle speeds should be 550 to 800 RPM. Anywhere in there is OK.
+-->
+<propeller x="-4.56" y="0" z="0.255"
+	radius="0.889"
+	mass="560.75"
+	moment="-10"
+	gear-ratio="1"
+	cruise-power="235"
+	cruise-rpm="2675"
+	cruise-speed="175"
+	cruise-alt="8000"
+	takeoff-power="300"
+	takeoff-rpm="2700"
+	min-rpm="1500"
+	max-rpm="2700"
+	fine-stop="1"
+	coarse-stop="4.0">
+  <actionpt x="-5.056" y="0" z="0.255"/>
+  <control-input axis="/controls/engines/engine[0]/propeller-pitch" control="ADVANCE"/>
+  <piston-engine
+	alt="0"
+	eng-rpm="2700"
+	eng-power="300"
+        min-throttle="0.09"
+	displacement="541.5"
+	compression="8.7">
+    <control-input axis="/controls/engines/engine[0]/throttle" control="THROTTLE"/>
+    <control-input axis="/controls/engines/engine[0]/starter" control="STARTER"/>
+    <control-input axis="/controls/engines/engine[0]/magnetos" control="MAGNETOS"/>
+    <control-input axis="/controls/engines/engine[0]/mixture" control="MIXTURE"/>
+  </piston-engine>
+</propeller>
+
+
+<!--
+Nose gear is not steerable, it casters freely. The Velocity has no mechanism to lock the nose gear.
+Spring and dampening settings are configured primarily to minimize twitchy ground interaction. I believe
+the problem is due to the CG being fairly close to the main wheels, which YASim doesn't like. The problem
+prevents me from raising friction values much higher than currrently set. Other solutions would be welcome.
+-->
+<gear x="-0.796" y="0" z="-1.070" 
+	dfric="0.5"
+	sfric="0.6"
+	spring="0.9"
+	damp="0.8"
+	compression="0.08"
+        castering="1">
+  <control-input axis="/controls/gear/nosewheel-lock" control="CASTERING" 
+	src0="0" src1="1"
+	dst0="1" dst1="0" />
+  <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[0]/position-norm"/>
+  <control-speed control="EXTEND" transition-time="12"/>
+</gear>
+
+<gear x="-3.750" y="0.967" z="-1.015"
+	dfric="0.5"
+	sfric="0.6"
+	spring="0.8"
+	damp="0.8"
+	compression="0.22">
+  <control-input axis="/controls/gear/brake-left" control="BRAKE"/>
+  <control-input axis="/controls/gear/brake-parking" control="BRAKE" split="true"/>
+  <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[1]/position-norm"/>
+  <control-speed control="EXTEND" transition-time="12"/>
+</gear>
+
+<gear x="-3.750" y="-0.967" z="-1.015"
+	dfric="0.5"
+	sfric="0.6"
+	spring="0.8"
+	damp="0.8"
+	compression="0.22">
+  <control-input axis="/controls/gear/brake-right" control="BRAKE"/>
+  <control-input axis="/controls/gear/brake-parking" control="BRAKE" split="true"/>
+  <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[2]/position-norm"/>
+  <control-speed control="EXTEND" transition-time="12"/>
+</gear>
+
+
+<!--
+Based on two 33 gallon tanks occupying most of the strakes forward of the main spar, 
+and one 4 gallon feed sump located behind rear seat against the firewall.
+See Nasal/Velocity_fuel.nas for details on the fuel system.
+-->
+
+<tank x="-3.912" y="0" z="-0.075" capacity="24"/>
+<tank x="-3.438" y="1.201" z="0.185" capacity="198"/>
+<tank x="-3.438" y="-1.201" z="0.185" capacity="198"/>
+
+
+<!--
+Move some mass forward to bring the CG to just within max aft range with a single pilot
+and no passengers or baggage. Copilot, passengers and baggage will move it forward.
+Ballast is normally added to the nose section forward of the canard bulkhead. Typically
+this is also where the battery and hydraulic pump live.
+-->
+
+<ballast x="-0.5" y="0" z="0" mass="133"/>
+
+
+<!--
+Weight options:
+  nose ballast
+  forward passengers
+  rear passengers or baggage 
+-->
+
+<weight x="-0.500"  y="0" z="0" mass-prop="/sim/weight[0]/weight-lb"/>
+<weight x="-2.170"  y="0" z="0" mass-prop="/sim/weight[1]/weight-lb"/>
+<weight x="-3.170"  y="0" z="0" mass-prop="/sim/weight[2]/weight-lb"/>
+
+
+</airplane>

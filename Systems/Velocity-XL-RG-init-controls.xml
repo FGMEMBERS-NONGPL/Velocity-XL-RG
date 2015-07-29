@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+Velocity XL-5-RG
+Gary R. Neely 'Buckaroo', Aug 2011
+-->
+
+<PropertyList>
+
+<doors>
+  <left>
+    <locked type="bool">0</locked>
+  </left>
+  <right>
+    <locked type="bool">0</locked>
+  </right>
+</doors>
+
+<gear>
+  <brake-parking type="double">1.0</brake-parking>
+  <gear-down type="bool">1</gear-down>
+  <nosewheel-lock type="bool">0</nosewheel-lock>
+</gear>
+
+<flight>
+  <rudder-left type="double">0</rudder-left>
+  <rudder-right type="double">0</rudder-right>
+</flight>
+
+<fuel>
+  <selected-tank type="int">-1</selected-tank>
+</fuel>
+
+<lighting>
+  <nav type="int">0</nav>
+  <strobes type="int">0</strobes>
+  <landing type="int">0</landing>
+  <panel-norm type="double">0</panel-norm>
+  <edm-norm type="double">0</edm-norm>
+  <lamp-oh-fl type="int">0</lamp-oh-fl>
+  <lamp-oh-fr type="int">0</lamp-oh-fr>
+  <lamp-oh-al type="int">0</lamp-oh-al>
+  <lamp-oh-ar type="int">0</lamp-oh-ar>
+</lighting>
+
+<switches>
+  <fuelpump type="int">0</fuelpump>
+  <avionics type="int">0</avionics>
+  <alternator type="int">0</alternator>
+  <battery type="int">0</battery>
+  <ignition type="int">0</ignition>
+  <kma-24 type="int">0</kma-24>
+  <kx-155-1 type="int">0</kx-155-1>
+  <kx-155-2 type="int">0</kx-155-2>
+  <kx-155-1-ident type="int">0</kx-155-1-ident>
+  <kx-155-2-ident type="int">0</kx-155-2-ident>
+  <kr-87 type="int">0</kr-87>
+  <kt-76c type="int">0</kt-76c>
+  <kn-62a type="int">0</kn-62a>
+  <kn-62a-mode type="int">1</kn-62a-mode>
+  <mag-left type="int">0</mag-left>
+  <mag-right type="int">0</mag-right>
+  <pitotheat type="int">0</pitotheat>
+  <starter type="int">0</starter>
+</switches>
+
+</PropertyList>
+

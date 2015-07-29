@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+
+<!--
+Velocity XL-RG
+Gary R. Neely 'Buckaroo', Nov 2011
+-->
+
+
+<PropertyList>
+
+<!--<path>mesh_lights.ac</path>-->
+
+
+<!-- Special Shaders -->
+
+<animation>
+  <type>noshadow</type>
+  <object-name>LampsNav</object-name>
+  <object-name>LampsStrobe</object-name>
+  <object-name>GlowNavL</object-name>
+  <object-name>GlowNavR</object-name>
+  <object-name>GlowStrobeL</object-name>
+  <object-name>GlowStrobeR</object-name>
+  <object-name>GlowTailL</object-name>
+  <object-name>GlowTailR</object-name>
+  <object-name>GlowLanding</object-name>
+</animation>
+
+
+<!-- Animations -->
+
+<animation>
+  <type>material</type>
+  <object-name>LampsNav</object-name>
+  <emission>
+    <red>1.0</red>
+    <green>1.0</green>
+    <blue>1.0</blue>
+    <factor-prop>sim/multiplay/generic/int[1]</factor-prop>
+  </emission>
+</animation>
+
+<animation>
+  <type>material</type>
+  <object-name>LampsStrobe</object-name>
+  <emission>
+    <red>1.0</red>
+    <green>1.0</green>
+    <blue>1.0</blue>
+    <factor-prop>sim/multiplay/generic/int[1]</factor-prop>
+  </emission>
+</animation>
+
+
+<animation>
+  <type>select</type>
+  <object-name>GlowNavL</object-name>
+  <object-name>GlowNavR</object-name>
+  <object-name>GlowTailL</object-name>
+  <object-name>GlowTailR</object-name>
+  <condition>
+    <property>sim/multiplay/generic/int[1]</property>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>GlowStrobeL</object-name>
+  <object-name>GlowStrobeR</object-name>
+  <condition>
+    <property>sim/multiplay/generic/int[2]</property>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>GlowLanding</object-name>
+  <condition>
+    <property>sim/multiplay/generic/int[3]</property>
+  </condition>
+</animation>
+
+<animation>
+  <type>flash</type>
+  <object-name>GlowNavL</object-name>
+  <center>
+    <x-m>5.096</x-m>
+    <y-m>-4.728</y-m>
+    <z-m>0.258</z-m>
+  </center>
+  <axis>
+    <x>-1</x>
+    <y>-1</y>
+    <z>0</z>
+  </axis>
+  <power>4</power>
+  <factor>1</factor>
+  <offset>0.4</offset>
+  <two-sides type="bool">false</two-sides>
+  <min>0.01</min>
+  <max>1</max>
+</animation>
+<animation>
+  <type>flash</type>
+  <object-name>GlowNavR</object-name>
+  <center>
+    <x-m>5.096</x-m>
+    <y-m>4.728</y-m>
+    <z-m>0.258</z-m>
+  </center>
+  <axis>
+    <x>-1</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+  <power>4</power>
+  <factor>1</factor>
+  <offset>0.4</offset>
+  <two-sides type="bool">false</two-sides>
+  <min>0.01</min>
+  <max>1</max>
+</animation>
+
+<animation>
+  <type>flash</type>
+  <object-name>GlowStrobeL</object-name>
+  <center>
+    <x-m>5.176</x-m>
+    <y-m>-4.747</y-m>
+    <z-m>0.258</z-m>
+  </center>
+  <axis>
+    <x>0</x>
+    <y>-1</y>
+    <z>0</z>
+  </axis>
+  <power>4</power>
+  <factor>1</factor>
+  <offset>0.4</offset>
+  <two-sides type="bool">false</two-sides>
+  <min>0.01</min>
+  <max>1</max>
+</animation>
+<animation>
+  <type>flash</type>
+  <object-name>GlowStrobeR</object-name>
+  <center>
+    <x-m>5.176</x-m>
+    <y-m>4.747</y-m>
+    <z-m>0.258</z-m>
+  </center>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+  <power>4</power>
+  <factor>1</factor>
+  <offset>0.4</offset>
+  <two-sides type="bool">false</two-sides>
+  <min>0.01</min>
+  <max>1</max>
+</animation>
+
+<animation>
+  <type>flash</type>
+  <object-name>GlowTailL</object-name>
+  <center>
+    <x-m>5.241</x-m>
+    <y-m>-4.713</y-m>
+    <z-m>0.258</z-m>
+  </center>
+  <axis>
+    <x>1</x>
+    <y>-1</y>
+    <z>0</z>
+  </axis>
+  <power>4</power>
+  <factor>1</factor>
+  <offset>0.4</offset>
+  <two-sides type="bool">false</two-sides>
+  <min>0.01</min>
+  <max>1</max>
+</animation>
+<animation>
+  <type>flash</type>
+  <object-name>GlowTailR</object-name>
+  <center>
+    <x-m>5.241</x-m>
+    <y-m>4.713</y-m>
+    <z-m>0.258</z-m>
+  </center>
+  <axis>
+    <x>1</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+  <power>4</power>
+  <factor>1</factor>
+  <offset>0.4</offset>
+  <two-sides type="bool">false</two-sides>
+  <min>0.01</min>
+  <max>1</max>
+</animation>
+
+<animation>
+  <type>flash</type>
+  <object-name>GlowLanding</object-name>
+  <center>
+    <x-m>-0.001</x-m>
+    <y-m>0</y-m>
+    <z-m>-0.1</z-m>
+  </center>
+  <axis>
+    <x>-0.996</x>
+    <y>0</y>
+    <z>-0.087</z>
+  </axis>
+  <power>6</power>
+  <factor>1</factor>
+  <offset>0</offset>
+  <two-sides type="bool">false</two-sides>
+  <min>0.06</min>
+  <max>1</max>
+</animation>
+
+
+</PropertyList>
+

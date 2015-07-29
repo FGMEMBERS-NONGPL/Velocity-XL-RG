@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<text>
+Velocity XL RG
+
+ Vs    65 kts
+ Vr    75 kts
+ Vle   110
+ Vlo   120
+ Vno   140
+ Vne   200 kias
+
+Quick Start:
+
+ Turn on the master battery
+ Set fuel to 'Both'
+ Turn on the fuel boost pump
+ Turn on the left and right magneto switches
+ After fuel pressure comes up, start engine with the starter button
+ Turn off fuel boost pump (optional)
+ Turn on alternator switch
+ Turn on avionics switch
+ Set your altimeter to the proper pressure
+ Check your heading gyros and set as necessary
+ Set elevator trim (the Velocity menu has a suggested setting)
+ Release parking break when ready
+
+The Velocity nose gear is not steerable; use differential braking to steer.
+Rudders can be simultaneously deployed as a weak speedbrake. Toggle with ctrl-b.
+
+For much more information, see README.txt
+</text>
+
+</PropertyList>

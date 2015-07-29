@@ -1,0 +1,17 @@
+<PropertyList>
+
+<path>sightgaugefuel.ac</path>
+
+<animation>
+  <type>scale</type>
+  <object-name>SightGaugeFuel</object-name>
+  <property>consumables/fuel/tank[1]/level-gal_us</property>
+  <x-factor>0</x-factor>
+  <x-offset>1</x-offset>
+  <y-factor>0</y-factor>
+  <y-offset>1</y-offset>
+  <z-factor>0.405</z-factor>
+  <z-offset>1</z-offset>
+</animation>
+
+</PropertyList>

@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<!--
+Velocity XL-RG
+Gary R. Neely 'Buckaroo', Dec 2011
+
+Sound position appears to be bugged as of FG 2.10+, causing choppy sound or swapping of
+left/right channels, especially for looped sounds. Small position offsets seem to get
+rid of this effect, though it positions the sound relative to the aircraft center. By
+default the sound seems to position the sound at the view center. Or something odd like that.
+Any positions with an x offset of 0.1 are added for this reason. Remove if not required.
+-->
+
+<PropertyList>
+
+<fx>
+
+<!--
+The start sequence needs work. Currently I don't have a sample of an IO-540
+starting, so I'm not messing with it yet.
+-->
+
+  <crank>
+   <name>engstart</name>
+   <path>Sounds/engstart.wav</path>
+   <property>/engines/engine/cranking</property>
+   <volume>
+    <offset>0.4</offset>
+   </volume>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </crank>
+
+  <crank>
+   <name>crank</name>
+   <mode>looped</mode>
+   <path>Sounds/cranking.wav</path>
+   <condition>
+    <property>/engines/engine/cranking</property>
+    <not>
+     <property>/engines/engine/running</property>
+    </not>
+   </condition>
+   <volume>
+    <offset>0.5</offset>
+   </volume>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </crank>
+
+  <crank>
+   <name>cough</name>
+   <path>Sounds/coughing.wav</path>
+   <property>/engines/engine/running</property>
+   <volume>
+    <offset>0.3</offset>
+   </volume>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </crank>
+
+<!--
+Engine volume is based on:
+  manifold pressure
+  ground reflection (sound diminishes with distance to ground)
+Pitch is affected by:
+  RPM
+  ground replection
+See Velocity.nas for how this is calculated.
+I don't change volume based on view; it's too subjective and messes with other sound
+calculations too much.
+Note that a propeller sound isn't used; the IO540 sound is a real engine+prop sound.
+-->
+
+  <engine>
+   <name>engine</name>
+   <mode>looped</mode>
+   <path>Aircraft/Velocity-XL-RG/Sounds/IO540MonoLoop2b.wav</path>
+   <property>/engines/engine/running</property>
+   <volume>
+     <property>/sim/Velocity/sound/volume-engine</property>
+     <factor>1</factor>
+     <offset>0</offset>
+   </volume>
+   <pitch>
+     <property>sim/Velocity/sound-agl</property>
+     <factor>-0.005</factor>
+     <offset>1</offset>
+   </pitch>
+   <pitch>
+     <property>/engines/engine/rpm</property>
+     <factor>0.00037</factor>
+     <min>0.6</min>
+     <max>1.0</max>
+     <offset>0</offset>
+   </pitch>
+   <position>
+     <x>4.5</x>
+     <y>0</y>
+     <z>0.25</z>
+   </position>
+  </engine>
+
+  <engine>
+   <name>rough</name>
+   <mode>looped</mode>
+   <path>Sounds/coughing.wav</path>
+   <condition>
+    <property>/sim/Velocity/sound/volume-engine-rough</property>
+   </condition>
+   <volume>
+     <property>/sim/Velocity/sound/volume-engine-rough</property>
+     <factor>1</factor>
+     <offset>0</offset>
+   </volume>
+   <pitch>
+     <offset>-0.5</offset>
+   </pitch>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </engine>
+
+<!-- Drop the rumble volume and make pitch dependent on rolling speed: -->
+
+  <rumble>
+   <name>rumble</name>
+   <mode>looped</mode>
+   <path>Sounds/rumble.wav</path>
+   <condition>
+    <and>
+      <greater-than>
+        <property>/velocities/groundspeed-kt</property>
+        <value>1</value>
+      </greater-than>
+      <or>
+        <property>/gear/gear[0]/wow</property>
+        <property>/gear/gear[1]/wow</property>
+        <property>/gear/gear[2]/wow</property>
+      </or>
+    </and>
+   </condition>
+   <volume>
+    <property>/velocities/groundspeed-kt</property>
+    <type>log</type>
+    <factor>0.15</factor>
+   </volume>
+   <pitch>
+    <property>/velocities/groundspeed-kt</property>
+    <type>log</type>
+    <factor>0.5</factor>
+    <offset>1.2</offset>
+   </pitch>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </rumble>
+
+<!-- Drop the volume a bit: -->
+
+  <gear>
+   <name>gear</name>
+   <mode>in-transit</mode>
+   <path>Sounds/gear.wav</path>
+   <condition>
+    <and>
+     <greater-than>
+       <property>/gear/gear[0]/position-norm</property>
+       <value>0.01</value>
+     </greater-than>
+     <less-than>
+       <property>/gear/gear[0]/position-norm</property>
+       <value>0.99</value>
+     </less-than>
+    </and>
+   </condition>
+   <volume>
+     <offset>-0.3</offset>
+   </volume>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </gear>
+
+<!--
+Drop the volume and pitch for this sound a bit
+and add a delayed double since it's unlikely that the nose
+and main mechanisms will lock at exactly the same time.
+-->
+
+  <gear>
+   <name>gear-lock-N</name>
+   <path>Sounds/gear-lck.wav</path>
+   <condition>
+     <and>
+      <property>controls/gear/gear-down</property>
+      <greater-than>
+        <property>/gear/gear[0]/position-norm</property>
+        <value>0.9</value>
+      </greater-than>
+      <less-than>
+        <property>/gear/gear[0]/position-norm</property>
+        <value>0.99</value>
+      </less-than>
+     </and>
+   </condition>
+   <volume>
+     <offset>-0.3</offset>
+   </volume>
+   <pitch>
+     <offset>-0.5</offset>
+   </pitch>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </gear>
+  <gear>
+   <name>gear-lock-M</name>
+   <path>Sounds/gear-lck.wav</path>
+   <condition>
+     <and>
+      <property>controls/gear/gear-down</property>
+      <greater-than>
+        <property>/gear/gear[0]/position-norm</property>
+        <value>0.9</value>
+      </greater-than>
+      <less-than>
+        <property>/gear/gear[0]/position-norm</property>
+        <value>0.99</value>
+      </less-than>
+     </and>
+   </condition>
+   <delay-sec>1</delay-sec>
+   <volume>
+     <offset>-0.3</offset>
+   </volume>
+   <pitch>
+     <offset>-0.5</offset>
+   </pitch>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </gear>
+
+<!-- Tire squeals for all three tires: -->
+
+  <squeal>
+   <name>squeal1</name>
+   <path>Sounds/squeal.wav</path>
+   <condition>
+    <or>
+     <property>/gear/gear[0]/wow</property>
+    </or>
+   </condition>
+   <volume>
+    <property>/velocities/speed-down-fps</property>
+    <factor>1</factor>
+    <max>1.0</max>
+   </volume>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </squeal>
+  <squeal>
+   <name>squeal2</name>
+   <path>Sounds/squeal.wav</path>
+   <condition>
+    <or>
+     <property>/gear/gear[1]/wow</property>
+    </or>
+   </condition>
+   <volume>
+    <property>/velocities/speed-down-fps</property>
+    <factor>1</factor>
+    <max>1.0</max>
+   </volume>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </squeal>
+  <squeal>
+   <name>squeal3</name>
+   <path>Sounds/squeal.wav</path>
+   <condition>
+    <or>
+     <property>/gear/gear[2]/wow</property>
+    </or>
+   </condition>
+   <volume>
+    <property>/velocities/speed-down-fps</property>
+    <factor>1</factor>
+    <max>1.0</max>
+   </volume>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </squeal>
+ 
+<!--
+I'm not happy with this wind noise; to me it just sounds
+like electronic buzzing. Something would be nice, might
+mess with this later, but typically the engine sound would
+drown this out anyway, and how often will you fly dead-stick?
+-->
+<!--
+  <wind>
+   <name>wind</name>
+   <mode>looped</mode>
+   <path>Sounds/wind.wav</path>
+   <property>/velocities/airspeed-kt</property>
+   <volume>
+    <property>/position/altitude-ft</property>
+    <factor>-0.000015</factor>
+    <offset>1.0</offset>
+    <min>0.1</min>
+    <max>1.0</max>
+   </volume>
+   <volume>
+     <property>/velocities/airspeed-kt</property>
+     <factor>0.0015</factor>
+     <min>0.03</min>
+     <max>0.25</max>
+   </volume>
+   <pitch>
+    <property>/velocities/airspeed-kt</property>
+    <factor>0.0035</factor>
+    <offset>1.25</offset>
+   </pitch>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </wind>
+-->
+
+  <stall>
+   <name>stall</name>
+   <mode>looped</mode>
+   <path>Sounds/stall.wav</path>
+   <condition>
+     <property>/sim/alarms/stall-warning</property>
+   </condition>
+   <volume>
+    <property>/sim/alarms/stall-warning</property>
+    <max>1.0</max>
+   </volume>
+   <reference-dist>10.0</reference-dist>
+   <max-dist>20.0</max-dist>
+   <position>
+     <x>0.1</x>
+     <y>0</y>
+     <z>0</z>
+   </position>
+  </stall>
+
+<!-- No door sounds at present until I find a sound clip that fits. -->
+
+
+</fx>
+ 
+</PropertyList>

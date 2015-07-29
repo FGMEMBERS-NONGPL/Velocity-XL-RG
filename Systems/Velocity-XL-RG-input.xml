@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<keyboard>
+
+  <key n="115">
+    <name>s</name>
+    <desc>Engine Starter</desc>
+    <binding>
+      <command>nasal</command>
+      <script>Velocity.starter_null();</script>
+    </binding>
+  </key>
+
+  <key n="123">
+    <name>{</name>
+    <desc>Decrease Magneto</desc>
+    <binding>
+      <command>nasal</command>
+      <script>Velocity.magnetos_null();</script>
+    </binding>
+  </key>
+
+  <key n="125">
+    <name>}</name>
+    <desc>Increase Magneto</desc>
+    <binding>
+      <command>nasal</command>
+      <script>Velocity.magnetos_null();</script>
+    </binding>
+  </key>
+
+</keyboard>
+
+</PropertyList>

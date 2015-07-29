@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<path>landing_gear_ind.ac</path>
+
+<animation>
+  <type>material</type>
+  <object-name>Placard</object-name>
+  <object-name>SwGear</object-name>
+  <object-name>SwBase</object-name>
+  <emission>
+    <red>0.4</red>
+    <green>0.2</green>
+    <blue>0.1</blue>
+    <factor-prop>/systems/electrical/outputs/panel-norm</factor-prop>
+  </emission>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>LampDownOn</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>gear/gear[0]/position-norm</property>
+      <value>1</value>
+    </equals>
+    <property>systems/electrical/outputs/bus-dc</property>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>LampDownOff</object-name>
+  <condition>
+    <or>
+    <less-than>
+      <property>gear/gear[0]/position-norm</property>
+      <value>1</value>
+    </less-than>
+    <not><property>systems/electrical/outputs/bus-dc</property></not>
+    </or>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>LampUpOn</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>gear/gear[0]/position-norm</property>
+      <value>0</value>
+    </equals>
+    <property>systems/electrical/outputs/bus-dc</property>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>LampUpOff</object-name>
+  <condition>
+    <or>
+    <greater-than>
+      <property>gear/gear[0]/position-norm</property>
+      <value>0</value>
+    </greater-than>
+    <not><property>systems/electrical/outputs/bus-dc</property></not>
+    </or>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>LampTransOn</object-name>
+  <condition>
+    <and>
+      <greater-than>
+        <property>gear/gear[0]/position-norm</property>
+        <value>0</value>
+      </greater-than>
+      <less-than>
+        <property>gear/gear[0]/position-norm</property>
+        <value>1</value>
+      </less-than>
+      <property>systems/electrical/outputs/bus-dc</property>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>LampTransOff</object-name>
+  <condition>
+    <or>
+      <equals>
+        <property>gear/gear[0]/position-norm</property>
+        <value>0</value>
+      </equals>
+      <equals>
+        <property>gear/gear[0]/position-norm</property>
+        <value>1</value>
+      </equals>
+      <not><property>systems/electrical/outputs/bus-dc</property></not>
+    </or>
+  </condition>
+</animation>
+
+<animation>
+  <type>rotate</type>
+  <object-name>SwGear</object-name>
+  <property>controls/gear/gear-down</property>
+  <interpolation>
+    <entry><ind>0</ind><dep>40</dep></entry>
+    <entry><ind>1</ind><dep> 0</dep></entry>
+  </interpolation>   
+  <center>
+    <x-m>0.001</x-m>
+    <y-m>0</y-m>
+    <z-m>0</z-m>
+  </center>
+  <axis>
+    <x>0</x>
+    <y>-1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+</PropertyList>
+

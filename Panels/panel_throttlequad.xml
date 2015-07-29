@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+
+<!--
+Velocity XL-RG
+Gary R. Neely 'Buckaroo', Aug 2011
+-->
+
+<PropertyList>
+
+<name>ThrottleQuad</name>
+<background>Aircraft/Velocity-XL-RG/Panels/transparent-bg.rgb</background>
+<w>8</w>
+<h>16</h>
+
+<instruments>
+
+  <instrument>
+    <name>panel hotspots</name>
+    <x>4</x>
+    <y>8</y>
+    <w>8</w>
+    <h>16</h>
+    <w-base>8</w-base>
+    <h-base>16</h-base>
+
+    <actions>
+
+<!-- Throttle -->
+
+      <action>
+        <name>ThrottleFwd</name>
+        <button>0</button>
+        <x>-3</x>
+        <y>4</y>
+        <w>6</w>
+        <h>4</h>
+        <repeatable>true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/engine[0]/throttle</property>
+          <step>0.05</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>false</wrap>
+        </binding>
+      </action>
+      <action>
+        <name>ThrottleRet</name>
+        <button>1</button>
+        <x>-3</x>
+        <y>4</y>
+        <w>6</w>
+        <h>4</h>
+        <repeatable>true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/engine[0]/throttle</property>
+          <step>-0.05</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>false</wrap>
+        </binding>
+      </action>
+
+<!-- Propeller -->
+
+      <action>
+        <name>PropFwd</name>
+        <button>0</button>
+        <x>-3</x>
+        <y>-2</y>
+        <w>6</w>
+        <h>4</h>
+        <repeatable>true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/engine[0]/propeller-pitch</property>
+          <step>0.05</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>false</wrap>
+        </binding>
+      </action>
+      <action>
+        <name>PropRet</name>
+        <button>1</button>
+        <x>-3</x>
+        <y>-2</y>
+        <w>6</w>
+        <h>4</h>
+        <repeatable>true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/engine[0]/propeller-pitch</property>
+          <step>-0.05</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>false</wrap>
+        </binding>
+      </action>
+
+<!-- Mixture -->
+
+      <action>
+        <name>MixtureFwd</name>
+        <button>0</button>
+        <x>-3</x>
+        <y>-8</y>
+        <w>6</w>
+        <h>4</h>
+        <repeatable>true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/engine[0]/mixture</property>
+          <step>0.05</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>false</wrap>
+        </binding>
+      </action>
+      <action>
+        <name>MixtureRet</name>
+        <button>1</button>
+        <x>-3</x>
+        <y>-8</y>
+        <w>6</w>
+        <h>4</h>
+        <repeatable>true</repeatable>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/engine[0]/mixture</property>
+          <step>-0.05</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>false</wrap>
+        </binding>
+      </action>
+
+    </actions>
+
+  </instrument>
+
+</instruments>
+
+</PropertyList>
+
+

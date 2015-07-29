@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+
+<!--
+Velocity XL-RG
+Gary R. Neely 'Buckaroo', Aug 2011
+-->
+
+<PropertyList>
+
+<!-- Main -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Panels/panel_main.xml</path>
+  <top-left>
+    <x-m>1.544</x-m>
+    <y-m>-0.410</y-m>
+    <z-m>0.372</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.544</x-m>
+    <y-m>-0.410</y-m>
+    <z-m>0.110</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.544</x-m>
+    <y-m>-0.150</y-m>
+    <z-m>0.110</z-m>
+  </bottom-right>
+</panel>
+
+<!-- Panel Lighting Switch -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Panels/panel_panellights.xml</path>
+  <top-left>
+    <x-m>1.544</x-m>
+    <y-m>-0.050</y-m>
+    <z-m>0.128</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.544</x-m>
+    <y-m>-0.050</y-m>
+    <z-m>0.088</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.544</x-m>
+    <y-m>0.020</y-m>
+    <z-m>0.088</z-m>
+  </bottom-right>
+</panel>
+
+<!-- Gear Switch -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Panels/panel_gear.xml</path>
+  <top-left>
+    <x-m>1.544</x-m>
+    <y-m>-0.198</y-m>
+    <z-m>0.413</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.544</x-m>
+    <y-m>-0.198</y-m>
+    <z-m>0.375</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.544</x-m>
+    <y-m>-0.122</y-m>
+    <z-m>0.375</z-m>
+  </bottom-right>
+</panel>
+
+<!-- Throttle Quad -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Panels/panel_throttlequad.xml</path>
+  <top-left>
+    <x-m>1.544</x-m>
+    <y-m>-0.500</y-m>
+    <z-m>0.278</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.544</x-m>
+    <y-m>-0.500</y-m>
+    <z-m>0.098</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.544</x-m>
+    <y-m>-0.440</y-m>
+    <z-m>0.098</z-m>
+  </bottom-right>
+</panel>
+
+<!-- Fuel Switch -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Panels/panel_fuel.xml</path>
+  <top-left>
+    <x-m>1.543</x-m>
+    <y-m>-0.043</y-m>
+    <z-m>0.080</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.666</x-m>
+    <y-m>-0.043</y-m>
+    <z-m>0.034</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.666</x-m>
+    <y-m>0.043</y-m>
+    <z-m>0.034</z-m>
+  </bottom-right>
+</panel>
+
+<!-- Overhead -->
+<!-- replaced by picks -->
+<!--
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Panels/panel_overhead.xml</path>
+  <top-left>
+    <x-m>2.029</x-m>
+    <y-m>-0.171</y-m>
+    <z-m>0.683</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>2.016</x-m>
+    <y-m>-0.171</y-m>
+    <z-m>0.647</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>2.016</x-m>
+    <y-m>0.171</y-m>
+    <z-m>0.647</z-m>
+  </bottom-right>
+</panel>
+-->
+
+<!-- Avionics -->
+
+<!-- kma 24 -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Models/Instruments/kma24_panel.xml</path>
+  <top-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.394</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.360</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.546</x-m>
+    <y-m>0.103</y-m>
+    <z-m>0.360</z-m>
+  </bottom-right>
+</panel>
+
+<!-- kx155 NavComm 1 -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Models/Instruments/kx155_panel_1.xml</path>
+  <top-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.359</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.307</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.546</x-m>
+    <y-m>0.103</y-m>
+    <z-m>0.307</z-m>
+  </bottom-right>
+</panel>
+
+<!-- kx155 NavComm 2 -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Models/Instruments/kx155_panel_2.xml</path>
+  <top-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.307</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.255</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.546</x-m>
+    <y-m>0.103</y-m>
+    <z-m>0.255</z-m>
+  </bottom-right>
+</panel>
+
+<!-- kr87 ADF -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Models/Instruments/kr87_panel.xml</path>
+  <top-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.255</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.220</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.546</x-m>
+    <y-m>0.103</y-m>
+    <z-m>0.220</z-m>
+  </bottom-right>
+</panel>
+
+<!-- kr76c transponder -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Models/Instruments/kt76c_panel.xml</path>
+  <top-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.220</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.180</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.546</x-m>
+    <y-m>0.103</y-m>
+    <z-m>0.180</z-m>
+  </bottom-right>
+</panel>
+
+<!-- kn62a DME -->
+
+<panel>
+  <path>Aircraft/Velocity-XL-RG/Models/Instruments/kn62a_panel.xml</path>
+  <top-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.179</z-m>
+  </top-left>
+  <bottom-left>
+    <x-m>1.546</x-m>
+    <y-m>-0.056</y-m>
+    <z-m>0.149</z-m>
+   </bottom-left>
+  <bottom-right>
+    <x-m>1.546</x-m>
+    <y-m>0.103</y-m>
+    <z-m>0.149</z-m>
+  </bottom-right>
+</panel>
+
+</PropertyList>
+

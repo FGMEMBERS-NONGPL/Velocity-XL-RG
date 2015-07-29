@@ -1,0 +1,782 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<path>edm.ac</path>
+
+<animation>
+  <type>material</type>
+  <object-name>Bezel</object-name>
+  <emission>
+    <red>0.2</red>
+    <green>0.1</green>
+    <blue>0.05</blue>
+    <factor-prop>/systems/electrical/outputs/panel-norm</factor-prop>
+  </emission>
+</animation>
+
+<animation>
+  <type>material</type>
+  <object-name>Screen</object-name>
+  <object-name>NeedleRPM</object-name>
+  <object-name>NeedleMAP</object-name>
+  <object-name>NeedleOT</object-name>
+  <object-name>NeedleOP</object-name>
+  <object-name>RPMDigit1</object-name>
+  <object-name>RPMDigit2</object-name>
+  <object-name>RPMDigit3</object-name>
+  <object-name>RPMDigit4</object-name>
+  <object-name>MAPDecimal</object-name>
+  <object-name>MAPDigit1</object-name>
+  <object-name>MAPDigit2</object-name>
+  <object-name>MAPDigit3</object-name>
+  <object-name>HPDigit1</object-name>
+  <object-name>HPDigit2</object-name>
+  <object-name>OTDigit1</object-name>
+  <object-name>OTDigit2</object-name>
+  <object-name>OTDigit3</object-name>
+  <object-name>OPDigit1</object-name>
+  <object-name>OPDigit2</object-name>
+  <object-name>OPDigit3</object-name>
+  <object-name>EGTDigit1</object-name>
+  <object-name>EGTDigit2</object-name>
+  <object-name>EGTDigit3</object-name>
+  <object-name>EGTDigit4</object-name>
+  <object-name>CHTDigit1</object-name>
+  <object-name>CHTDigit2</object-name>
+  <object-name>CHTDigit3</object-name>
+  <object-name>EGT1</object-name>
+  <object-name>EGT2</object-name>
+  <object-name>EGT3</object-name>
+  <object-name>EGT4</object-name>
+  <object-name>EGT5</object-name>
+  <object-name>EGT6</object-name>
+  <object-name>CHT1</object-name>
+  <object-name>CHT2</object-name>
+  <object-name>CHT3</object-name>
+  <object-name>CHT4</object-name>
+  <object-name>CHT5</object-name>
+  <object-name>CHT6</object-name>
+  <object-name>CHT1red</object-name>
+  <object-name>CHT2red</object-name>
+  <object-name>CHT3red</object-name>
+  <object-name>CHT4red</object-name>
+  <object-name>CHT5red</object-name>
+  <object-name>CHT6red</object-name>
+  <emission>
+    <red>0.8</red>
+    <green>0.8</green>
+    <blue>0.8</blue>
+    <factor-prop>/systems/electrical/outputs/edm-norm</factor-prop>
+  </emission>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>ScreenOff</object-name>
+  <condition>
+    <not><property>/systems/electrical/outputs/bus-dc</property></not>
+  </condition>
+</animation>
+
+<animation>
+  <type>rotate</type>
+  <object-name>NeedleRPM</object-name>
+  <property>/engines/engine[0]/rpm</property>
+  <interpolation>
+    <entry><ind>   0</ind><dep>  0</dep></entry>
+    <entry><ind>1000</ind><dep>  0</dep></entry>
+    <entry><ind>2800</ind><dep>171</dep></entry>
+  </interpolation>
+  <center>
+    <x-m>0</x-m>
+    <y-m>-0.011</y-m>
+    <z-m>0.015</z-m>
+  </center>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<animation>
+  <type>rotate</type>
+  <object-name>NeedleMAP</object-name>
+  <property>/engines/engine[0]/mp-inhg-adj</property>
+  <interpolation>
+    <entry><ind> 0</ind><dep>  0</dep></entry>
+    <entry><ind>10</ind><dep> 50</dep></entry>
+    <entry><ind>20</ind><dep>100</dep></entry>
+    <entry><ind>30</ind><dep>150</dep></entry>
+    <entry><ind>33</ind><dep>180</dep></entry>
+  </interpolation>
+  <center>
+    <x-m>0</x-m>
+    <y-m>-0.011</y-m>
+    <z-m>0.015</z-m>
+  </center>
+  <axis>
+    <x>1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- Normal oil temp range, 60-118 C -->
+<animation>
+  <type>translate</type>
+  <object-name>NeedleOT</object-name>
+  <property>/engines/engine[0]/oiltempc</property>
+  <interpolation>
+    <entry><ind>  0</ind><dep>    0</dep></entry>
+    <entry><ind> 30</ind><dep>    0</dep></entry>
+    <entry><ind>150</ind><dep>0.018</dep></entry>
+  </interpolation>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- Normal oil pressure range, 55-95 -->
+<animation>
+  <type>translate</type>
+  <object-name>NeedleOP</object-name>
+  <property>/engines/engine[0]/oil-press</property>
+  <interpolation>
+    <entry><ind>  0</ind><dep>    0</dep></entry>
+    <entry><ind> 25</ind><dep>    0</dep></entry>
+    <entry><ind>125</ind><dep>0.018</dep></entry>
+  </interpolation>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+
+<!-- RPM Digits -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>RPMDigit1</object-name>
+  <property>/engines/engine[0]/rpm</property>
+  <factor>0.0001</factor>
+  <step>1000</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>RPMDigit2</object-name>
+  <property>/engines/engine[0]/rpm</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>RPMDigit3</object-name>
+  <property>/engines/engine[0]/rpm</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>RPMDigit4</object-name>
+  <property>/engines/engine[0]/rpm</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- MAP Digits -->
+
+<animation>
+  <type>select</type>
+  <object-name>MAPDigit1</object-name>
+  <condition>
+    <greater-than-equals>
+      <property>/engines/engine[0]/mp-inhg-adj</property>
+      <value>10</value>
+    </greater-than-equals>
+  </condition>
+</animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>MAPDigit1</object-name>
+  <property>/engines/engine[0]/mp-inhg-adj</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>MAPDigit2</object-name>
+  <property>/engines/engine[0]/mp-inhg-adj</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>MAPDigit3</object-name>
+  <property>/engines/engine[0]/mp-inhg-adj</property>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- HP Digits -->
+<animation>
+  <type>select</type>
+  <object-name>HPDigit1</object-name>
+  <condition>
+    <greater-than-equals>
+      <property>/engines/engine[0]/hp</property>
+      <value>0.1</value>
+    </greater-than-equals>
+  </condition>
+</animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>HPDigit1</object-name>
+  <property>/engines/engine[0]/hp</property>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>HPDigit2</object-name>
+  <property>/engines/engine[0]/hp</property>
+  <factor>10</factor>
+  <step>0.01</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- Oil-T Digits -->
+
+<animation>
+  <type>select</type>
+  <object-name>OTDigit1</object-name>
+  <condition>
+    <greater-than-equals>
+      <property>/engines/engine[0]/oiltempc</property>
+      <value>100</value>
+    </greater-than-equals>
+  </condition>
+</animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>OTDigit1</object-name>
+  <property>/engines/engine[0]/oiltempc</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>OTDigit2</object-name>
+  <property>/engines/engine[0]/oiltempc</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>OTDigit3</object-name>
+  <property>/engines/engine[0]/oiltempc</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- Oil-P Digits -->
+
+<animation>
+  <type>select</type>
+  <object-name>OPDigit1</object-name>
+  <condition>
+    <greater-than-equals>
+      <property>/engines/engine[0]/oil-press</property>
+      <value>100</value>
+    </greater-than-equals>
+  </condition>
+</animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>OPDigit1</object-name>
+  <property>/engines/engine[0]/oil-press</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>OPDigit2</object-name>
+  <property>/engines/engine[0]/oil-press</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>OPDigit3</object-name>
+  <property>/engines/engine[0]/oil-press</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- EGT Digits -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>EGTDigit1</object-name>
+  <property>/engines/engine[0]/egttempf</property>
+  <factor>0.0001</factor>
+  <step>1000</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>EGTDigit2</object-name>
+  <property>/engines/engine[0]/egttempf</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>EGTDigit3</object-name>
+  <property>/engines/engine[0]/egttempf</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>EGTDigit4</object-name>
+  <property>/engines/engine[0]/egttempf</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- CHT Digits -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>CHTDigit1</object-name>
+  <property>/engines/engine[0]/chttempf</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHTDigit2</object-name>
+  <property>/engines/engine[0]/chttempf</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHTDigit3</object-name>
+  <property>/engines/engine[0]/chttempf</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<!-- Cylinder Reports -->
+
+<animation>
+  <type>textranslate</type>
+  <object-name>EGT1</object-name>
+  <property>/engines/engine[0]/cyl[0]/egt</property>
+  <factor>0.25</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>EGT2</object-name>
+  <property>/engines/engine[0]/cyl[1]/egt</property>
+  <factor>0.25</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>EGT3</object-name>
+  <property>/engines/engine[0]/cyl[2]/egt</property>
+  <factor>0.25</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>EGT4</object-name>
+  <property>/engines/engine[0]/cyl[3]/egt</property>
+  <factor>0.25</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>EGT5</object-name>
+  <property>/engines/engine[0]/cyl[4]/egt</property>
+  <factor>0.25</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>EGT6</object-name>
+  <property>/engines/engine[0]/cyl[5]/egt</property>
+  <factor>0.25</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>CHT1</object-name>
+  <condition>
+    <not><property>/engines/engine[0]/cyl[0]/cht-redline</property></not>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT1red</object-name>
+  <condition>
+    <property>/engines/engine[0]/cyl[0]/cht-redline</property>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT2</object-name>
+  <condition>
+    <not><property>/engines/engine[0]/cyl[1]/cht-redline</property></not>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT2red</object-name>
+  <condition>
+    <property>/engines/engine[0]/cyl[1]/cht-redline</property>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT3</object-name>
+  <condition>
+    <not><property>/engines/engine[0]/cyl[2]/cht-redline</property></not>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT3red</object-name>
+  <condition>
+    <property>/engines/engine[0]/cyl[2]/cht-redline</property>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT4</object-name>
+  <condition>
+    <not><property>/engines/engine[0]/cyl[3]/cht-redline</property></not>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT4red</object-name>
+  <condition>
+    <property>/engines/engine[0]/cyl[3]/cht-redline</property>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT5</object-name>
+  <condition>
+    <not><property>/engines/engine[0]/cyl[4]/cht-redline</property></not>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT5red</object-name>
+  <condition>
+    <property>/engines/engine[0]/cyl[4]/cht-redline</property>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT6</object-name>
+  <condition>
+    <not><property>/engines/engine[0]/cyl[5]/cht-redline</property></not>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>CHT6red</object-name>
+  <condition>
+    <property>/engines/engine[0]/cyl[5]/cht-redline</property>
+  </condition>
+</animation>
+
+<!--
+CHT bars are scaled to about 65% max bar height, or 0.25 * 0.65. This roughly aligns the
+redline CHT with the scale on the EDM screen.
+-->
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT1</object-name>
+  <property>/engines/engine[0]/cyl[0]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT2</object-name>
+  <property>/engines/engine[0]/cyl[1]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT3</object-name>
+  <property>/engines/engine[0]/cyl[2]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT4</object-name>
+  <property>/engines/engine[0]/cyl[3]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT5</object-name>
+  <property>/engines/engine[0]/cyl[4]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT6</object-name>
+  <property>/engines/engine[0]/cyl[5]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT1red</object-name>
+  <property>/engines/engine[0]/cyl[0]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT2red</object-name>
+  <property>/engines/engine[0]/cyl[1]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT3red</object-name>
+  <property>/engines/engine[0]/cyl[2]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT4red</object-name>
+  <property>/engines/engine[0]/cyl[3]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT5red</object-name>
+  <property>/engines/engine[0]/cyl[4]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>CHT6red</object-name>
+  <property>/engines/engine[0]/cyl[5]/cht</property>
+  <factor>0.1625</factor>
+  <axis>
+    <x>-1</x>
+    <y>0</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+
+</PropertyList>

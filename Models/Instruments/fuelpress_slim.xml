@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<path>fuelpress_slim.ac</path>
+
+<animation>
+  <type>material</type>
+  <object-name>Bezel</object-name>
+  <emission>
+    <red>0.2</red>
+    <green>0.1</green>
+    <blue>0.05</blue>
+    <factor-prop>/systems/electrical/outputs/panel-norm</factor-prop>
+  </emission>
+</animation>
+
+<animation>
+  <type>material</type>
+  <object-name>Digit1</object-name>
+  <object-name>Digit2</object-name>
+  <object-name>Digit3</object-name>
+  <object-name>Decimal</object-name>
+  <emission>
+    <red>0.8</red>
+    <green>0.8</green>
+    <blue>0.8</blue>
+    <factor-prop>/systems/electrical/outputs/edm-norm</factor-prop>
+  </emission>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>Digit1</object-name>
+  <condition>
+    <and>
+    <property>/systems/electrical/outputs/bus-dc</property>
+    <greater-than-equals>
+      <property>/engines/engine[0]/fuel-press</property>
+      <value>10</value>
+    </greater-than-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>Decimal</object-name>
+  <object-name>Digit2</object-name>
+  <object-name>Digit3</object-name>
+  <condition>
+    <property>/systems/electrical/outputs/bus-dc</property>
+  </condition>
+</animation>
+
+<animation>
+  <type>textranslate</type>
+  <object-name>Digit1</object-name>
+  <property>/engines/engine[0]/fuel-press</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>Digit2</object-name>
+  <property>/engines/engine[0]/fuel-press</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>Digit3</object-name>
+  <property>/engines/engine[0]/fuel-press</property>
+  <factor>1</factor>
+  <step>0.1</step>
+  <axis>
+    <x>0</x>
+    <y>1</y>
+    <z>0</z>
+  </axis>
+</animation>
+
+</PropertyList>

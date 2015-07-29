@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<!--
+Velocity XL-RG
+Gary R. Neely 'Buckaroo', Aug 2011
+-->
+
+<PropertyList>
+<!-- <PropertyList include="Aircraft/Human/Include/walker-include.xml">--> <!-- Use for Detlef's "walker" -->
+
+<sim include="Systems/Velocity-XL-RG-views.xml">
+  <description>Velocity XL RG</description>
+  <author>Gary Neely "Buckaroo"</author>
+  <status>beta</status>
+
+  <startup>
+    <splash-texture>Aircraft/Velocity-XL-RG/velocity_splash2.png</splash-texture>
+  </startup>
+
+  <flight-model>yasim</flight-model>
+  <aero>velocity-xl-rg-yasim</aero>
+  <fuel-fraction>0.7</fuel-fraction> <!-- Determines initial fuel load -->
+
+  <model>
+    <path>Aircraft/Velocity-XL-RG/Models/Velocity-XL-RG.xml</path>
+    <livery>
+      <file type="string">BlueGold</file>
+    </livery>
+    <map> <!-- Pilot exit position for Detlef's "walker" 2.3 -1.5-->
+      <default_exit>
+        <x-offset-m type ="float">2.7</x-offset-m>
+        <y-offset-m type ="float">-1.5</y-offset-m>
+      </default_exit>
+    </map>
+  </model> 
+
+  <systems include="Systems/Velocity-XL-RG-electrical.xml">
+  </systems>
+
+  <sound>
+    <path>Aircraft/Velocity-XL-RG/Sounds/Velocity-XL-RG-sound.xml</path>
+  </sound>
+
+  <help include="Help/help.xml"/>
+
+  <instrumentation>
+    <path>Aircraft/Velocity-XL-RG/Systems/Velocity-XL-RG-instrumentation.xml</path>
+  </instrumentation>
+
+  <weight n="0">
+    <name>Nose Ballast</name>
+    <weight-lb>30</weight-lb> 
+    <max-lb>60</max-lb>
+    <min-lb>0</min-lb>
+  </weight>
+  <weight n="1">
+    <name>Front Seats</name>
+    <weight-lb>200</weight-lb> 
+    <max-lb>550</max-lb>
+    <min-lb>120</min-lb>
+  </weight>
+  <weight n="2">
+    <name>Rear Seats</name>
+    <weight-lb>0</weight-lb> 
+    <max-lb>550</max-lb>
+    <min-lb>0</min-lb>
+  </weight>
+
+  <menubar>
+    <default>
+      <menu n="100">
+        <label>Velocity</label>
+        <item>
+          <label>Select Livery</label>
+          <binding>
+            <command>nasal</command>
+            <script>aircraft.livery.dialog.toggle()</script>
+          </binding>
+        </item>
+        <item>
+          <label>Fast Engine Startup</label>
+          <binding> 
+            <command>nasal</command>
+            <script>Velocity.QuickStart();</script>
+          </binding>
+        </item>
+        <item>
+          <label>Suggested Take-off trim</label>
+          <binding> 
+            <command>property-assign</command>
+            <property>controls/flight/elevator-trim</property>
+            <value type="double">-0.2</value>
+          </binding>
+        </item>
+        <item>
+          <label>Left Door</label>
+          <binding>
+            <command>nasal</command>
+            <script>Velocity.Velocity_doors_left()</script>
+          </binding>
+        </item>
+        <item>
+          <label>Right Door</label>
+          <binding>
+            <command>nasal</command>
+            <script>Velocity.Velocity_doors_right()</script>
+          </binding>
+        </item>
+        <item>
+          <label>Toggle Shadow</label>
+          <binding>
+            <command>property-toggle</command>
+            <property>/sim/Velocity/use-shadow</property>
+          </binding>
+        </item>
+        <item>
+          <label>Set Comm 1 to 122.75</label>
+          <binding>
+            <command>property-assign</command>
+            <property>instrumentation/comm[0]/frequencies/selected-mhz</property>
+            <value type="double">122.75</value>
+          </binding>
+        </item>
+      </menu>
+    </default>
+  </menubar>
+
+  <!-- These values are used to pass properties over MP -->
+  <multiplay>
+    <generic>
+      <float n="0" alias="/controls/doors/left/position-norm"/>
+      <float n="1" alias="/controls/doors/right/position-norm"/>
+      <int n="0" alias="/controls/lighting/beacon"/> <!-- Currently unused -->
+      <int n="1" alias="/systems/electrical/outputs/lights-nav"/>
+      <!--<int n="2" alias="/systems/electrical/outputs/lights-strobes"/>--> <!-- Reserve for strobes -->
+      <int n="3" alias="/systems/electrical/outputs/lights-landing"/>
+    </generic>
+  </multiplay>
+
+  <Velocity include="Systems/Velocity-XL-RG-engine.xml">
+    <hours-running type="float">0</hours-running>
+    <use-shadow type="bool">1</use-shadow>
+    <sound-agl type="float">0</sound-agl>
+    <sound-volume type="float">0</sound-volume>
+    <sound>
+      <volume-engine type="float">0</volume-engine>
+      <volume-engine-rough type="float">0</volume-engine-rough>
+    </sound>
+  </Velocity>
+
+  <alarms>
+    <stall-warning type="float">0</stall-warning>
+  </alarms>
+</sim>
+
+<engines include="Systems/Velocity-XL-RG-init-engines.xml"/>
+
+<controls include="Systems/Velocity-XL-RG-init-controls.xml"/>
+
+<instrumentation include="Systems/Velocity-XL-RG-init-instrumentation.xml"/>
+
+<systems include="Systems/Velocity-XL-RG-init-systems.xml"/>
+
+<input include="Systems/Velocity-XL-RG-input.xml"/>
+
+
+<nasal>
+  <Velocity>
+    <file>Aircraft/Velocity-XL-RG/Nasal/Electrical.nas</file>
+    <file>Aircraft/Velocity-XL-RG/Nasal/ammeter.nas</file>
+    <file>Aircraft/Velocity-XL-RG/Nasal/rmi.nas</file>
+    <file>Aircraft/Velocity-XL-RG/Nasal/kx155.nas</file>
+    <file>Aircraft/Velocity-XL-RG/Nasal/kt76c.nas</file>
+    <file>Aircraft/Velocity-XL-RG/Nasal/kn62a.nas</file>
+    <file>Aircraft/Velocity-XL-RG/Nasal/Velocity_fuel.nas</file>
+    <file>Aircraft/Velocity-XL-RG/Nasal/Velocity_engine.nas</file>
+    <file>Aircraft/Velocity-XL-RG/Nasal/Velocity.nas</file>
+    <file>Aircraft/Velocity-XL-RG/Nasal/Velocity_rudders.nas</file>
+    <file>Aircraft/Velocity-XL-RG/Nasal/Velocity_sound.nas</file>
+  </Velocity>
+</nasal>
+
+</PropertyList>
+    
+    
+    
+    
+    

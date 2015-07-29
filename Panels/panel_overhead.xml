@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+
+<!--
+Velocity XL-RG
+Gary R. Neely 'Buckaroo', Aug 2011
+-->
+
+<PropertyList>
+
+<name>Overhead</name>
+<background>Aircraft/Velocity-XL-RG/Panels/transparent-bg.rgb</background>
+<w>48</w>
+<h>8</h>
+
+<instruments>
+
+  <instrument>
+    <name>panel hotspots</name>
+    <x>24</x>
+    <y>4</y>
+    <w>48</w>
+    <h>8</h>
+    <w-base>48</w-base>
+    <h-base>8</h-base>
+
+    <actions>
+
+      <action>
+        <name>Master</name>
+        <button>0</button>
+        <x>-22</x>
+        <y>-3</y>
+        <w>4</w>
+        <h>6</h>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/battery</property>
+        </binding>
+      </action>
+
+      <action>
+        <name>FuelPump</name>
+        <button>0</button>
+        <x>-18</x>
+        <y>-3</y>
+        <w>4</w>
+        <h>6</h>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/fuelpump</property>
+        </binding>
+      </action>
+
+      <action>
+        <name>MagL</name>
+        <button>0</button>
+        <x>-14</x>
+        <y>-3</y>
+        <w>4</w>
+        <h>6</h>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/mag-left</property>
+        </binding>
+      </action>
+
+      <action>
+        <name>MagR</name>
+        <button>0</button>
+        <x>-10</x>
+        <y>-3</y>
+        <w>4</w>
+        <h>6</h>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/mag-right</property>
+        </binding>
+      </action>
+
+      <action>
+        <name>Starter</name>
+        <button>0</button>
+        <x>-6</x>
+        <y>-3</y>
+        <w>4</w>
+        <h>6</h>
+        <binding>
+          <command>nasal</command>
+          <script>Velocity.engine_starter(1);</script>
+        </binding>
+        <mod-up>
+        <binding>
+          <command>nasal</command>
+          <script>Velocity.engine_starter(0);</script>
+        </binding>
+        </mod-up>
+      </action>
+
+      <action>
+        <name>Alternator</name>
+        <button>0</button>
+        <x>2</x>
+        <y>-3</y>
+        <w>4</w>
+        <h>6</h>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/alternator</property>
+        </binding>
+      </action>
+
+      <action>
+        <name>Avionics</name>
+        <button>0</button>
+        <x>6</x>
+        <y>-3</y>
+        <w>4</w>
+        <h>6</h>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/avionics</property>
+        </binding>
+      </action>
+
+      <action>
+        <name>PitotHeat</name>
+        <button>0</button>
+        <x>10</x>
+        <y>-3</y>
+        <w>4</w>
+        <h>6</h>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/switches/pitotheat</property>
+        </binding>
+      </action>
+
+      <action>
+        <name>Nav</name>
+        <button>0</button>
+        <x>14</x>
+        <y>-3</y>
+        <w>4</w>
+        <h>6</h>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/lighting/nav</property>
+        </binding>
+      </action>
+
+      <action>
+        <name>Landing</name>
+        <button>0</button>
+        <x>18</x>
+        <y>-3</y>
+        <w>4</w>
+        <h>6</h>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/lighting/landing</property>
+        </binding>
+      </action>
+
+    </actions>
+
+  </instrument>
+
+</instruments>
+
+</PropertyList>
+
+

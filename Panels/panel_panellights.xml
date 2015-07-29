@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+
+<!--
+Velocity XL-RG
+Gary R. Neely 'Buckaroo', Aug 2011
+-->
+
+<PropertyList>
+
+<name>PanelLightSwitch</name>
+<background>Aircraft/Velocity-XL-RG/Panels/transparent-bg.rgb</background>
+<w>20</w>
+<h>8</h>
+
+<instruments>
+
+  <instrument>
+    <name>panel hotspots</name>
+    <x>10</x>
+    <y>4</y>
+    <w>20</w>
+    <h>8</h>
+    <w-base>20</w-base>
+    <h-base>8</h-base>
+
+    <actions>
+
+      <action>
+        <name>panel inc</name>
+        <button>0</button>
+        <x>-8</x>
+        <y>-3</y>
+        <w>8</w>
+        <h>6</h>
+        <binding>
+          <command>property-adjust</command>
+          <property>controls/lighting/panel-norm</property>
+          <step>0.1</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>false</wrap>
+        </binding>
+      </action>
+      <action>
+        <name>panel dec</name>
+        <button>1</button>
+        <x>-8</x>
+        <y>-3</y>
+        <w>8</w>
+        <h>6</h>
+        <binding>
+          <command>property-adjust</command>
+          <property>controls/lighting/panel-norm</property>
+          <step>-0.1</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>false</wrap>
+        </binding>
+      </action>
+
+      <action>
+        <name>edm inc</name>
+        <button>0</button>
+        <x>3</x>
+        <y>-3</y>
+        <w>8</w>
+        <h>6</h>
+        <binding>
+          <command>property-adjust</command>
+          <property>controls/lighting/edm-norm</property>
+          <step>0.1</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>false</wrap>
+        </binding>
+      </action>
+      <action>
+        <name>edm dec</name>
+        <button>1</button>
+        <x>3</x>
+        <y>-3</y>
+        <w>8</w>
+        <h>6</h>
+        <binding>
+          <command>property-adjust</command>
+          <property>controls/lighting/edm-norm</property>
+          <step>-0.1</step>
+          <min>0</min>
+          <max>1</max>
+          <wrap>false</wrap>
+        </binding>
+      </action>
+
+    </actions>
+
+  </instrument>
+
+</instruments>
+
+</PropertyList>

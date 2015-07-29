@@ -1,0 +1,26 @@
+AC3Db
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
+MATERIAL "Matte0" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0 0 0 shi 64 trans 0
+OBJECT world
+kids 1
+OBJECT poly
+name "SightGaugeFuel"
+data 8
+Cube.009
+texture "sightgaugefuel.rgb"
+texrep 1 1
+crease 30.000000
+numvert 4
+0 0.015 -0.003349
+0 0.015 0.003349
+0 0 -0.003349
+0 0 0.003349
+numsurf 1
+SURF 0x10
+mat 1
+refs 4
+0 0.0351563878357 0.0884210988879
+2 0.0351562388241 0.0273437723517
+3 0.0962334126234 0.0273437723517
+1 0.0962335318327 0.0884210988879
+kids 0
